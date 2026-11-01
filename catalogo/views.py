@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
 from .models import Material
@@ -18,10 +19,18 @@ def lista_materiales(request):
             Q(descripcion__icontains=buscar)
         )
 
+    paginator = Paginator(materiales, 5)
+
+    page_number = request.GET.get('page')
+
+    materiales = paginator.get_page(page_number)
+
     return render(
         request,
         'catalogo/materiales.html',
-        {'materiales': materiales}
+        {
+            'materiales': materiales
+        }
     )
 
 
@@ -35,7 +44,9 @@ def detalle_material(request, id):
     return render(
         request,
         'catalogo/detalle_material.html',
-        {'material': material}
+        {
+            'material': material
+        }
     )
 
 
@@ -56,7 +67,9 @@ def crear_material(request):
     return render(
         request,
         'catalogo/crear_material.html',
-        {'form': form}
+        {
+            'form': form
+        }
     )
 
 
@@ -80,6 +93,7 @@ def editar_material(request, id):
             return redirect('materiales')
 
     else:
+
         form = MaterialForm(
             instance=material
         )
@@ -103,13 +117,17 @@ def eliminar_material(request, id):
     )
 
     if request.method == 'POST':
+
         material.delete()
+
         return redirect('materiales')
 
     return render(
         request,
         'catalogo/eliminar_material.html',
-        {'material': material}
+        {
+            'material': material
+        }
     )
 
 
