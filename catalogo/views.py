@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 from .models import Material
 from .forms import MaterialForm
 
@@ -24,7 +26,11 @@ def lista_materiales(request):
 
 
 def detalle_material(request, id):
-    material = get_object_or_404(Material, id=id)
+
+    material = get_object_or_404(
+        Material,
+        id=id
+    )
 
     return render(
         request,
@@ -33,9 +39,11 @@ def detalle_material(request, id):
     )
 
 
+@login_required
 def crear_material(request):
 
     if request.method == 'POST':
+
         form = MaterialForm(request.POST)
 
         if form.is_valid():
@@ -52,9 +60,13 @@ def crear_material(request):
     )
 
 
+@login_required
 def editar_material(request, id):
 
-    material = get_object_or_404(Material, id=id)
+    material = get_object_or_404(
+        Material,
+        id=id
+    )
 
     if request.method == 'POST':
 
@@ -68,7 +80,9 @@ def editar_material(request, id):
             return redirect('materiales')
 
     else:
-        form = MaterialForm(instance=material)
+        form = MaterialForm(
+            instance=material
+        )
 
     return render(
         request,
@@ -80,9 +94,13 @@ def editar_material(request, id):
     )
 
 
+@login_required
 def eliminar_material(request, id):
 
-    material = get_object_or_404(Material, id=id)
+    material = get_object_or_404(
+        Material,
+        id=id
+    )
 
     if request.method == 'POST':
         material.delete()

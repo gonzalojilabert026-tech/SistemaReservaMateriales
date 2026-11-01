@@ -1,18 +1,29 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Perfil</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Perfil de Usuario</h1>
+{% block contenido %}
 
-<p>Bienvenido {{ user.username }}</p>
+<div class="card">
 
-<a href="{% url 'logout' %}">
-    Cerrar sesión
-</a>
+    <div class="card-body">
 
-</body>
-</html>
+        <h1 class="mb-4">
+            Perfil de Usuario
+        </h1>
+
+        <p>
+            Bienvenido <strong>{{ user.username }}</strong>
+        </p>
+
+        <a
+            href="{% url 'logout' %}"
+            class="btn btn-danger">
+
+            Cerrar sesión
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
