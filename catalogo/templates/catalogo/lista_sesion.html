@@ -12,6 +12,11 @@
 
         {% if materiales %}
 
+            <p>
+                <strong>Total materiales:</strong>
+                {{ materiales|length }}
+            </p>
+
             <ul class="list-group">
 
                 {% for material in materiales %}

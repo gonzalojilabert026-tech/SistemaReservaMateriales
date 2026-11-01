@@ -20,34 +20,24 @@
 
         <div class="navbar-nav ms-auto">
 
-            <a class="nav-link" href="/catalogo/">
-                Catálogo
-            </a>
+    <a class="nav-link" href="/catalogo/">
+        Catálogo
+    </a>
 
-            <a class="nav-link" href="/usuarios/perfil/">
-                {{ user.username }}
-            </a>
+    <a class="nav-link" href="{% url 'lista_sesion' %}">
+        Sesión ({{ request.session.materiales_sesion|length|default:0 }})
+    </a>
 
-            <a class="nav-link" href="/usuarios/logout/">
-                Cerrar sesión
-            </a>
+    <a class="nav-link" href="/usuarios/perfil/">
+        {{ user.username }}
+    </a>
 
-            <a class="nav-link" href="/admin/">
-                Panel Admin
-            </a>
+    <a class="nav-link" href="/usuarios/logout/">
+        Cerrar sesión
+    </a>
 
-        </div>
-
-    </div>
-
-</nav>
-
-<div class="container mt-4">
-
-    {% block contenido %}
-    {% endblock %}
+    <a class="nav-link" href="/admin/">
+        Panel Admin
+    </a>
 
 </div>
-
-</body>
-</html>
