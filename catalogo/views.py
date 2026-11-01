@@ -1,10 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
 from .models import Material
 from .forms import MaterialForm
 
 
 def lista_materiales(request):
+
+    buscar = request.GET.get('buscar')
+
     materiales = Material.objects.all()
+
+    if buscar:
+        materiales = Material.objects.filter(
+            Q(nombre__icontains=buscar) |
+            Q(descripcion__icontains=buscar)
+        )
+
     return render(
         request,
         'catalogo/materiales.html',

@@ -1,23 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Crear Material</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Crear Material</h1>
+{% block contenido %}
 
-<form method="post">
+<h1 class="mb-4">Crear Material</h1>
 
-    {% csrf_token %}
+<div class="card">
 
-    {{ form.as_p }}
+    <div class="card-body">
 
-    <button type="submit">
-        Guardar
-    </button>
+        <form method="post">
 
-</form>
+            {% csrf_token %}
 
-</body>
-</html>
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                Guardar
+
+            </button>
+
+            <a
+                href="{% url 'materiales' %}"
+                class="btn btn-secondary">
+
+                Volver
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

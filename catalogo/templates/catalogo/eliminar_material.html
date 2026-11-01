@@ -1,29 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Eliminar Material</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Eliminar Material</h1>
+{% block contenido %}
 
-<p>
-    ¿Desea eliminar {{ material.nombre }}?
-</p>
+<div class="card border-danger">
 
-<form method="post">
+    <div class="card-body">
 
-    {% csrf_token %}
+        <h1 class="text-danger">
+            Eliminar Material
+        </h1>
 
-    <button type="submit">
-        Eliminar
-    </button>
+        <hr>
 
-</form>
+        <p>
+            ¿Desea eliminar el material
+            <strong>{{ material.nombre }}</strong>?
+        </p>
 
-<a href="{% url 'materiales' %}">
-    Cancelar
-</a>
+        <form method="post">
 
-</body>
-</html>
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="btn btn-danger">
+
+                Eliminar
+
+            </button>
+
+            <a
+                href="{% url 'materiales' %}"
+                class="btn btn-secondary">
+
+                Cancelar
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

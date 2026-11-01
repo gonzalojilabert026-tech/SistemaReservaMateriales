@@ -1,23 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Detalle Material</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>{{ material.nombre }}</h1>
+{% block contenido %}
 
-<p>{{ material.descripcion }}</p>
+<div class="card">
 
-<p>Stock: {{ material.stock }}</p>
+    <div class="card-body">
 
-<p>Precio: {{ material.precio_referencia }}</p>
+        <h1>{{ material.nombre }}</h1>
 
-<p>Categoría: {{ material.categoria }}</p>
+        <hr>
 
-<a href="{% url 'materiales' %}">
-    Volver
-</a>
+        <p>
+            <strong>Descripción:</strong>
+            {{ material.descripcion }}
+        </p>
 
-</body>
-</html>
+        <p>
+            <strong>Stock:</strong>
+            {{ material.stock }}
+        </p>
+
+        <p>
+            <strong>Precio:</strong>
+            {{ material.precio_referencia }}
+        </p>
+
+        <p>
+            <strong>Categoría:</strong>
+            {{ material.categoria }}
+        </p>
+
+        <a
+            href="{% url 'materiales' %}"
+            class="btn btn-primary">
+
+            Volver
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

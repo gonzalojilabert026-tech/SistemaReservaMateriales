@@ -1,45 +1,83 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Materiales</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Lista de Materiales</h1>
+{% block contenido %}
 
-<a href="{% url 'crear_material' %}">
+<h1 class="mb-4">Lista de Materiales</h1>
+
+<form method="GET" class="mb-4">
+
+    <div class="input-group">
+
+        <input
+            type="text"
+            name="buscar"
+            class="form-control"
+            placeholder="Buscar material">
+
+        <button
+            class="btn btn-primary"
+            type="submit">
+
+            Buscar
+
+        </button>
+
+    </div>
+
+</form>
+
+<a
+    href="{% url 'crear_material' %}"
+    class="btn btn-success mb-4">
+
     Crear Material
-</a>
 
-<hr>
+</a>
 
 {% for material in materiales %}
 
-<h3>{{ material.nombre }}</h3>
+<div class="card mb-3">
 
-<p>
-    Stock: {{ material.stock }}
-</p>
+    <div class="card-body">
 
-<p>
-    Categoría: {{ material.categoria }}
-</p>
+        <h4>{{ material.nombre }}</h4>
 
-<a href="{% url 'detalle_material' material.id %}">
-    Ver
-</a>
+        <p>
+            Stock: {{ material.stock }}
+        </p>
 
-<a href="{% url 'editar_material' material.id %}">
-    Editar
-</a>
+        <p>
+            Categoría: {{ material.categoria }}
+        </p>
 
-<a href="{% url 'eliminar_material' material.id %}">
-    Eliminar
-</a>
+        <a
+            href="{% url 'detalle_material' material.id %}"
+            class="btn btn-info">
 
-<hr>
+            Ver
+
+        </a>
+
+        <a
+            href="{% url 'editar_material' material.id %}"
+            class="btn btn-warning">
+
+            Editar
+
+        </a>
+
+        <a
+            href="{% url 'eliminar_material' material.id %}"
+            class="btn btn-danger">
+
+            Eliminar
+
+        </a>
+
+    </div>
+
+</div>
 
 {% endfor %}
 
-</body>
-</html>
+{% endblock %}
