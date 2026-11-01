@@ -31,7 +31,20 @@
     class="btn btn-success mb-4">
 
     Crear Material
+<a
+    href="{% url 'lista_sesion' %}"
+    class="btn btn-primary mb-4">
 
+    Ver Sesión
+    <a
+    href="{% url 'agregar_sesion' material.id %}"
+    class="btn btn-secondary">
+
+    Agregar a Sesión
+
+</a>
+
+</a>
 </a>
 
 {% for material in materiales %}

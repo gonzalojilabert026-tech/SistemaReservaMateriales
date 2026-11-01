@@ -11,8 +11,37 @@
         </h1>
 
         <p>
-            Bienvenido <strong>{{ user.username }}</strong>
+            <strong>Usuario:</strong>
+            {{ user.username }}
         </p>
+
+        <p>
+            <strong>Correo:</strong>
+            {{ user.email }}
+        </p>
+
+        <p>
+            <strong>Estado:</strong>
+            Autenticado
+        </p>
+
+        <hr>
+
+        <a
+            href="/catalogo/"
+            class="btn btn-primary">
+
+            Ir al Catálogo
+
+        </a>
+
+        <a
+            href="/admin/"
+            class="btn btn-dark">
+
+            Panel Admin
+
+        </a>
 
         <a
             href="{% url 'logout' %}"

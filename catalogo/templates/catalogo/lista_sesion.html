@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h1 class="mb-4">
+    Materiales en Sesión
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        {% if materiales %}
+
+            <ul class="list-group">
+
+                {% for material in materiales %}
+
+                    <li class="list-group-item">
+                        {{ material }}
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+            <a
+                href="{% url 'vaciar_sesion' %}"
+                class="btn btn-danger mt-3">
+
+                Vaciar Sesión
+
+            </a>
+
+        {% else %}
+
+            <p>
+                No hay materiales en la sesión.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

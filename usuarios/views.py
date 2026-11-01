@@ -23,7 +23,12 @@ def registro(request):
 
 
 def iniciar_sesion(request):
+
+    if request.user.is_authenticated:
+        return redirect('perfil')
+
     if request.method == 'POST':
+
         form = AuthenticationForm(
             request,
             data=request.POST

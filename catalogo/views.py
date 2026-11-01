@@ -1,113 +1,37 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Q
-from django.contrib.auth.decorators import login_required
+def agregar_sesion(request, id):
 
-from .models import Material
-from .forms import MaterialForm
+    material = get_object_or_404(Material, id=id)
 
-
-def lista_materiales(request):
-
-    buscar = request.GET.get('buscar')
-
-    materiales = Material.objects.all()
-
-    if buscar:
-        materiales = Material.objects.filter(
-            Q(nombre__icontains=buscar) |
-            Q(descripcion__icontains=buscar)
-        )
-
-    return render(
-        request,
-        'catalogo/materiales.html',
-        {'materiales': materiales}
+    materiales = request.session.get(
+        'materiales_sesion',
+        []
     )
 
+    materiales.append(material.nombre)
 
-def detalle_material(request, id):
+    request.session['materiales_sesion'] = materiales
 
-    material = get_object_or_404(
-        Material,
-        id=id
+    return redirect('materiales')
+
+
+def lista_sesion(request):
+
+    materiales = request.session.get(
+        'materiales_sesion',
+        []
     )
 
     return render(
         request,
-        'catalogo/detalle_material.html',
-        {'material': material}
-    )
-
-
-@login_required
-def crear_material(request):
-
-    if request.method == 'POST':
-
-        form = MaterialForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('materiales')
-
-    else:
-        form = MaterialForm()
-
-    return render(
-        request,
-        'catalogo/crear_material.html',
-        {'form': form}
-    )
-
-
-@login_required
-def editar_material(request, id):
-
-    material = get_object_or_404(
-        Material,
-        id=id
-    )
-
-    if request.method == 'POST':
-
-        form = MaterialForm(
-            request.POST,
-            instance=material
-        )
-
-        if form.is_valid():
-            form.save()
-            return redirect('materiales')
-
-    else:
-        form = MaterialForm(
-            instance=material
-        )
-
-    return render(
-        request,
-        'catalogo/editar_material.html',
+        'catalogo/lista_sesion.html',
         {
-            'form': form,
-            'material': material
+            'materiales': materiales
         }
     )
 
 
-@login_required
-def eliminar_material(request, id):
+def vaciar_sesion(request):
 
-    material = get_object_or_404(
-        Material,
-        id=id
-    )
+    request.session['materiales_sesion'] = []
 
-    if request.method == 'POST':
-        material.delete()
-        return redirect('materiales')
-
-    return render(
-        request,
-        'catalogo/eliminar_material.html',
-        {'material': material}
-    )
+    return redirect('lista_sesion')
