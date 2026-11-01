@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Materiales</title>
+</head>
+<body>
+
+<h1>Lista de Materiales</h1>
+
+<a href="{% url 'crear_material' %}">
+    Crear Material
+</a>
+
+<hr>
+
+{% for material in materiales %}
+
+<h3>{{ material.nombre }}</h3>
+
+<p>
+    Stock: {{ material.stock }}
+</p>
+
+<p>
+    Categoría: {{ material.categoria }}
+</p>
+
+<a href="{% url 'detalle_material' material.id %}">
+    Ver
+</a>
+
+<a href="{% url 'editar_material' material.id %}">
+    Editar
+</a>
+
+<a href="{% url 'eliminar_material' material.id %}">
+    Eliminar
+</a>
+
+<hr>
+
+{% endfor %}
+
+</body>
+</html>

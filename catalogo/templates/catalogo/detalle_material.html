@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle Material</title>
+</head>
+<body>
+
+<h1>{{ material.nombre }}</h1>
+
+<p>{{ material.descripcion }}</p>
+
+<p>Stock: {{ material.stock }}</p>
+
+<p>Precio: {{ material.precio_referencia }}</p>
+
+<p>Categoría: {{ material.categoria }}</p>
+
+<a href="{% url 'materiales' %}">
+    Volver
+</a>
+
+</body>
+</html>

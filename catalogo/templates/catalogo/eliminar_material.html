@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar Material</title>
+</head>
+<body>
+
+<h1>Eliminar Material</h1>
+
+<p>
+    ¿Desea eliminar {{ material.nombre }}?
+</p>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    <button type="submit">
+        Eliminar
+    </button>
+
+</form>
+
+<a href="{% url 'materiales' %}">
+    Cancelar
+</a>
+
+</body>
+</html>
