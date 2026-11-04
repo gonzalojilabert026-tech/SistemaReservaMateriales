@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm #UserCreationForm, 
 from django.contrib.auth import login, logout
 
-
+"""
 def registro(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -20,7 +20,7 @@ def registro(request):
         'usuarios/registro.html',
         {'form': form}
     )
-
+"""
 
 def iniciar_sesion(request):
 
