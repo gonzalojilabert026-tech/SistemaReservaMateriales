@@ -6,6 +6,160 @@ Inicio
 
 {% block content %}
 
+{% load static %}
+
+{% load static %}
+
+{% load static %}
+
+<div id="bannerPrincipal"
+     class="carousel slide carousel-fade"
+     data-bs-ride="carousel"
+     data-bs-interval="4000">
+
+    <div class="carousel-inner">
+
+        <!-- Cemento -->
+
+        <div class="carousel-item active">
+
+            <img src="{% static 'img/banner_cemento.png' %}"
+                 class="d-block w-100"
+                 style="height:520px; object-fit:cover;">
+
+            <div class="carousel-caption">
+
+                <div class="bg-dark bg-opacity-75 p-4 rounded">
+
+                    <h1 class="fw-bold">
+                        🧱 Cemento Premium
+                    </h1>
+
+                    <p class="fs-4">
+                        Hasta 20% de descuento
+                    </p>
+
+                    <a href="/catalogo/"
+                       class="btn btn-danger btn-lg">
+
+                        Ver Oferta
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Herramientas -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'img/banner_herramientas.png' %}"
+                 class="d-block w-100"
+                 style="height:520px; object-fit:cover;">
+
+            <div class="carousel-caption">
+
+                <div class="bg-dark bg-opacity-75 p-4 rounded">
+
+                    <h1 class="fw-bold">
+                        🔨 Herramientas Eléctricas
+                    </h1>
+
+                    <p class="fs-4">
+                        Hasta 30% OFF
+                    </p>
+
+                    <a href="/catalogo/"
+                       class="btn btn-danger btn-lg">
+
+                        Ver Oferta
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Pinturas -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'img/banner_pinturas.png' %}"
+                 class="d-block w-100"
+                 style="height:520px; object-fit:cover;">
+
+            <div class="carousel-caption">
+
+                <div class="bg-dark bg-opacity-75 p-4 rounded">
+
+                    <h1 class="fw-bold">
+                        🎨 Pinturas
+                    </h1>
+
+                    <p class="fs-4">
+                        Promociones para interiores y exteriores
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Madera -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'img/banner_madera.png' %}"
+                 class="d-block w-100"
+                 style="height:520px; object-fit:cover;">
+
+            <div class="carousel-caption">
+
+                <div class="bg-dark bg-opacity-75 p-4 rounded">
+
+                    <h1 class="fw-bold">
+                        🪵 Madera y Tableros
+                    </h1>
+
+                    <p class="fs-4">
+                        Hasta 25% de descuento
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#bannerPrincipal"
+            data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+
+    </button>
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#bannerPrincipal"
+            data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+
+    </button>
+
+</div>
+
+
 <div class="container mt-5">
 
     <div class="bg-light p-5 rounded shadow">
@@ -22,6 +176,118 @@ Inicio
         <a href="/catalogo/" class="btn btn-warning btn-lg">
             Ver Catálogo
         </a>
+
+    </div>
+
+</div>
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">
+        🔥 Ofertas Destacadas
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="card shadow h-100">
+
+                <img src="{% static 'img/fondo_desc.png' %}" class="card-img-top"
+                    style="height:180px; object-fit:cover;">
+
+                <div class="card-body text-center">
+
+                    <span class="badge bg-danger mb-2">
+                        -20%
+                    </span>
+
+                    <h5>Cemento</h5>
+
+                    <p>
+                        Sacos seleccionados.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow h-100">
+
+                <img src="{% static 'img/fondo_desc.png' %}" class="card-img-top"
+                    style="height:180px; object-fit:cover;">
+
+                <div class="card-body text-center">
+
+                    <span class="badge bg-danger mb-2">
+                        -30%
+                    </span>
+
+                    <h5>Herramientas</h5>
+
+                    <p>
+                        Taladros y esmeriles.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow h-100">
+
+                <img src="{% static 'img/fondo_desc.png' %}" class="card-img-top"
+                    style="height:180px; object-fit:cover;">
+
+                <div class="card-body text-center">
+
+                    <span class="badge bg-danger mb-2">
+                        -15%
+                    </span>
+
+                    <h5>Pinturas</h5>
+
+                    <p>
+                        Interior y exterior.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow h-100">
+
+                <img src="{% static 'img/fondo_desc.png' %}" class="card-img-top"
+                    style="height:180px; object-fit:cover;">
+
+                <div class="card-body text-center">
+
+                    <span class="badge bg-danger mb-2">
+                        -25%
+                    </span>
+
+                    <h5>Madera</h5>
+
+                    <p>
+                        Tablas y tableros.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
