@@ -10,11 +10,11 @@ class CategoriaAdmin(admin.ModelAdmin):
 
     list_display = (
         "id",
-        "nombre"
+        "nombre_categoria"
     )
 
     search_fields = (
-        "nombre",
+        "nombre_categoria",
     )
 
 @admin.register(Material)
