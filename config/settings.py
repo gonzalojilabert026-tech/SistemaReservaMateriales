@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'apps.usuarios',
     'apps.catalogo',
     'apps.core',
+    'apps.reservas',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+                'apps.reservas.context_processors.contador_materiales',
             ],
         },
     },
