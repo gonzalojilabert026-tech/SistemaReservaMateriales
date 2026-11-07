@@ -8,15 +8,9 @@
 
     <div class="input-group">
 
-        <input
-            type="text"
-            name="buscar"
-            class="form-control"
-            placeholder="Buscar material">
+        <input type="text" name="buscar" class="form-control" placeholder="Buscar material">
 
-        <button
-            class="btn btn-primary"
-            type="submit">
+        <button class="btn btn-primary" type="submit">
 
             Buscar
 
@@ -26,15 +20,13 @@
 
 </form>
 
-<a href="{% url 'crear_material' %}"
-   class="btn btn-success mb-4">
+<a href="{% url 'crear_material' %}" class="btn btn-success mb-4">
 
     Crear Material
 
 </a>
 
-<a href="{% url 'lista_sesion' %}"
-   class="btn btn-primary mb-4">
+<a href="{% url 'lista_sesion' %}" class="btn btn-primary mb-4">
 
     Ver Sesión
 
@@ -54,30 +46,37 @@
 
         <p>
             Categoría: {{ material.categoria }}
+        </p>
 
-        </p><p>
-    Estado: {{ material.estado }}
-</p>
+        <p>
+            Estado:
 
-        <a href="{% url 'detalle_material' material.id %}"
-           class="btn btn-info">
+            {% if material.activo %}
+
+            <span class="badge bg-success">
+                Disponible
+            </span>
+
+            {% else %}
+
+            <span class="badge bg-danger">
+                No Disponible
+            </span>
+
+            {% endif %}
+
+        </p>
+
+        <a href="{% url 'detalle_material' material.id %}" class="btn btn-info">
             Ver
         </a>
 
-        <a href="{% url 'editar_material' material.id %}"
-           class="btn btn-warning">
+        <a href="{% url 'editar_material' material.id %}" class="btn btn-warning">
             Editar
         </a>
 
-        <a href="{% url 'eliminar_material' material.id %}"
-           class="btn btn-danger">
+        <a href="{% url 'eliminar_material' material.id %}" class="btn btn-danger">
             Eliminar
-        </a>
-
-        <a href="{% url 'agregar_sesion' material.id %}"
-           class="btn btn-secondary">
-            Agregar a Sesión
-
         </a>
 
     </div>
@@ -86,4 +85,59 @@
 
 {% endfor %}
 
+<nav>
+
+    <ul class="pagination justify-content-center">
+
+        {% if materiales.has_previous %}
+
+        <li class="page-item">
+
+            <a class="page-link" href="?page=1">
+
+                Primera
+
+            </a>
+
+        </li>
+
+        <li class="page-item">
+
+            <a class="page-link" href="?page={{ materiales.previous_page_number }}">
+
+                Anterior
+
+            </a>
+
+        </li>
+
+        {% endif %}
+
+        <li class="page-item active">
+
+            <span class="page-link">
+
+                {{ materiales.number }}
+
+            </span>
+
+        </li>
+
+        {% if materiales.has_next %}
+
+        <li class="page-item">
+
+            <a class="page-link" href="?page={{ materiales.next_page_number }}">
+
+                Siguiente
+
+            </a>
+
+        </li>
+
+        {% endif %}
+
+    </ul>
+
+</nav>
 {% endblock %}

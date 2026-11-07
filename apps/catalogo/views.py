@@ -16,7 +16,8 @@ def lista_materiales(request):
     if buscar:
         materiales = Material.objects.filter(
             Q(nombre__icontains=buscar) |
-            Q(descripcion__icontains=buscar)
+            Q(descripcion__icontains=buscar) |
+            Q(codigo__icontains=buscar)
         )
 
     paginator = Paginator(materiales, 5)
@@ -171,3 +172,4 @@ def vaciar_sesion(request):
     request.session['materiales_sesion'] = []
 
     return redirect('lista_sesion')
+    
