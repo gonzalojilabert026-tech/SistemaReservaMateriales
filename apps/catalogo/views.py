@@ -42,14 +42,24 @@ def detalle_material(request, id):
         id=id
     )
 
-    return render(
-        request,
-        'catalogo/detalle_material.html',
-        {
-            'material': material
-        }
-    )
+    relacionados = Material.objects.filter(
+        categoria=material.categoria
+    ).exclude(
+        id=material.id
+    )[:4]
 
+    return render(
+
+        request,
+
+        'catalogo/detalle_material.html',
+
+        {
+            'material': material,
+            'relacionados': relacionados
+        }
+
+    )
 
 @login_required
 def crear_material(request):
