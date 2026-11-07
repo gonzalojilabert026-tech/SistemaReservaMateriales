@@ -4,11 +4,10 @@ def contador_materiales(request):
 
     if "reserva" in request.session:
 
-        cantidad = len(
-            request.session["reserva"]
-        )
+        for item in request.session["reserva"].values():
+
+            cantidad += item["cantidad"]
 
     return {
         "contador_materiales": cantidad
     }
-

@@ -47,3 +47,37 @@ class Reserva:
         self.session["reserva"] = {}
 
         self.guardar()
+
+    def restar(self, material):
+    
+        id = str(material.id)
+
+        if id in self.reserva:
+
+            self.reserva[id]["cantidad"] -= 1
+
+            if self.reserva[id]["cantidad"] <= 0:
+                self.eliminar(material)
+
+            self.guardar()
+
+    def subtotal(self):
+
+        subtotal = 0
+
+        for item in self.reserva.values():
+
+            subtotal += (
+                item["precio"] *
+                item["cantidad"]
+            )
+
+        return subtotal
+
+    def iva(self):
+
+        return self.subtotal() * 0.19
+
+    def total(self):
+
+        return self.subtotal() + self.iva()
