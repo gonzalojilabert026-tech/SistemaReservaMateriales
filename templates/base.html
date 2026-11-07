@@ -38,17 +38,57 @@
                     Catalogo
                 </a>
 
-                 <a class="nav-link text-white" href="/apps/usuarios/opcion/">
-                    Ingresar
-                </a>
-                
+                <div class="dropdown">
+
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+
+                        👤 Cuenta
+
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        {% if user.is_authenticated %}
+
+                        <li>
+                            <a class="dropdown-item" href="{% url 'usuarios:perfil' %}">
+                                Mi Cuenta
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{% url 'usuarios:logout' %}">
+                                Cerrar Sesión
+                            </a>
+                        </li>
+
+                        {% else %}
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Iniciar Sesión
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{% url 'usuarios:registro' %}">
+                                Registrarse
+                            </a>
+                        </li>
+
+                        {% endif %}
+
+                    </ul>
+
+                </div>
+
                 <a class="nav-link text-white position-relative" href="#">
 
                     🛒
 
                     <span class="badge rounded-pill bg-warning text-dark">
 
-                        0
+                        {{ contador_materiales }}
 
                     </span>
 
