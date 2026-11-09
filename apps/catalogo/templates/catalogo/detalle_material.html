@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <h1>{{ material.nombre }}</h1>
+
+        <hr>
+
+        <p>
+            <strong>Descripción:</strong>
+            {{ material.descripcion }}
+        </p>
+
+        <p>
+            <strong>Stock:</strong>
+            {{ material.stock }}
+        </p>
+
+        <p>
+            <strong>Precio:</strong>
+            {{ material.precio_referencia }}
+        </p>
+
+        <p>
+            <strong>Categoría:</strong>
+            {{ material.categoria }}
+        </p>
+
+        <a href="{% url 'materiales' %}" class="btn btn-primary">
+
+            Volver
+
+        </a>
+
+    </div>
+
+    <h3 class="mt-4">
+
+        Materiales Relacionados
+
+    </h3>
+
+    <div class="row">
+
+        {% for item in relacionados %}
+
+        <div class="col-md-3">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h5>
+                        {{ item.nombre }}
+                    </h5>
+
+                    <p>
+                        {{ item.categoria }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

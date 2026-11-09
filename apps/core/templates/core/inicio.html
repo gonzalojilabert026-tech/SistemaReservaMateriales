@@ -1,0 +1,434 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div id="bannerPrincipal" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+
+    <div class="carousel-inner">
+
+        <!-- Cemento -->
+
+        <div class="carousel-item active">
+
+            <img src="{% static 'img/inicio/banner_cemento.png' %}" class="d-block w-100"
+                style="height:520px; object-fit:contain; background:#000;">
+
+            <div class="carousel-caption">
+
+                <div class="bg-dark bg-opacity-75 p-4 rounded">
+
+                    <h1 class="fw-bold">
+                        Cemento Premium
+                    </h1>
+
+                    <p class="fs-4">
+                        Hasta 20% de descuento
+                    </p>
+
+                    <a href="/catalogo/" class="btn btn-danger btn-lg">
+
+                        Ver Oferta
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Herramientas -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'img/inicio/banner_herramientas_electricas_stanley.png' %}" class="d-block w-100"
+                style="height:520px; object-fit:contain; background:#000;">
+
+            <div class="carousel-caption">
+
+                <div class="bg-dark bg-opacity-75 p-4 rounded">
+
+                    <h1 class="fw-bold">
+                        Herramientas Eléctricas
+                    </h1>
+
+                    <p class="fs-4">
+                        Hasta 30% OFF
+                    </p>
+
+                    <a href="/catalogo/" class="btn btn-danger btn-lg">
+
+                        Ver Oferta
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Pinturas -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'img/inicio/banner_pinturas.png' %}" class="d-block w-100"
+                style="height:520px; object-fit:contain; background:#000;">
+
+            <div class="carousel-caption">
+
+                <div class="bg-dark bg-opacity-75 p-4 rounded">
+
+                    <h1 class="fw-bold">
+                        Pinturas
+                    </h1>
+
+                    <p class="fs-4">
+                        Promociones para interiores y exteriores
+                    </p>
+
+                    <a href="/catalogo/" class="btn btn-danger btn-lg">
+
+                        Ver Oferta
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Madera -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'img/inicio/banner_madera.png' %}" class="d-block w-100"
+                style="height:520px; object-fit:contain; background:#000;">
+
+            <div class="carousel-caption">
+
+                <div class="bg-dark bg-opacity-75 p-4 rounded">
+
+                    <h1 class="fw-bold">
+                        Madera y Tableros
+                    </h1>
+
+                    <p class="fs-4">
+                        Hasta 25% de descuento
+                    </p>
+
+                    <a href="/catalogo/" class="btn btn-danger btn-lg">
+
+                        Ver Oferta
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#bannerPrincipal" data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#bannerPrincipal" data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+
+    </button>
+
+</div>
+
+<!-- parte de los SLIDERs -->
+<div class="container mt-5">
+
+    <div class="bg-light p-5 rounded shadow">
+
+        <h1 class="display-4">
+            Reserva de Materiales de Construcción
+        </h1>
+
+        <p class="lead">
+            Encuentra cemento, ladrillos, hierro,
+            pinturas y herramientas para tus proyectos.
+        </p>
+
+        <a href="/catalogo/" class="btn btn-warning btn-lg">
+            Ver Catálogo
+        </a>
+
+    </div>
+
+</div>
+
+<div class="container mt-5">
+
+    <h2 class="seccion-titulo">
+        🔥 Productos mas reservados 🔥
+    </h2>
+
+    <!-- SLIDER IZQUIERDA -->
+    <div class="slider-container">
+
+        <div class="slider-track-left">
+
+            <!-- TARJETA 1 -->
+            <div class="product-card">
+
+                <img src="{% static 'img/inicio/plancha_osb_9mm.png' %}" alt="Planchas OSB">
+
+                <div class="card-body text-center">
+
+                    <p class="text-muted mb-1">
+                        CONSTRUSTOCK
+                    </p>
+
+                    <h6 class="fw-bold">
+                        Planchas OSB 9mm
+                    </h6>
+                    <span class="badge bg-success">
+                        Más Reservado con descuento
+                    </span>
+                    <span class="badge bg-danger">
+                        -20%
+                    </span>
+                    <h5 class="text-danger">
+                        $12.990
+                    </h5>
+
+                    <small class="text-decoration-line-through">
+                        $18.990
+                    </small>
+                </div>
+            </div>
+
+            <!-- TARJETA 2 -->
+            <div class="product-card">
+
+                <img src="{% static 'img/inicio/perfiles_30x20.png' %}">
+
+                <div class="card-body text-center">
+
+                    <p class="text-muted mb-1">
+                        CONSTRUSTOCK
+                    </p>
+
+                    <h6 class="fw-bold">
+                        Perfil 30x20x2 mm
+                    </h6>
+                    <span class="badge bg-success">
+                        Más Reservado con descuento
+                    </span>
+                    <span class="badge bg-danger">
+                        -30%
+                    </span>
+
+                    <h5 class="text-danger">
+                        $8.990
+                    </h5>
+
+                    <small class="text-decoration-line-through">
+                        $12.990
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- TARJETA 3 -->
+            <div class="product-card">
+
+                <img src="{% static 'img/inicio/llaves_stanley.png' %}">
+
+                <div class="card-body text-center">
+
+                    <p class="text-muted mb-1">
+                        CONSTRUSTOCK
+                    </p>
+
+                    <h6 class="fw-bold">
+                        Juego de Llaves Stanley
+                    </h6>
+                    <span class="badge bg-success">
+                        Más Reservado con descuento
+                    </span>
+                    <span class="badge bg-danger">
+                        -15%
+                    </span>
+
+                    <h5 class="text-danger">
+                        $24.990
+                    </h5>
+
+                    <small class="text-decoration-line-through">
+                        $29.990
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- TARJETA 4 -->
+            <div class="product-card">
+
+                <img src="{% static 'img/inicio/clavos_4.png' %}">
+
+                <div class="card-body text-center">
+
+                    <p class="text-muted mb-1">
+                        CONSTRUSTOCK
+                    </p>
+
+                    <h6 class="fw-bold">
+                        Clavos 4"
+                    </h6>
+                    <span class="badge bg-success">
+                        Más Reservado con descuento
+                    </span>
+                    <span class="badge bg-danger">
+                        -25%
+                    </span>
+
+                    <h5 class="text-danger">
+                        $5.990
+                    </h5>
+
+                    <small class="text-decoration-line-through">
+                        $7.990
+                    </small>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- SLIDER DERECHA -->
+    <div class="slider-container">
+
+        <div class="slider-track-right">
+
+            <!-- TARJETA 1 -->
+            <div class="product-card">
+
+                <img src="{% static 'img/inicio/taladro_makita_18v.png' %}">
+
+                <div class="card-body text-center">
+
+                    <p class="text-muted mb-1">
+                        CONSTRUSTOCK
+                    </p>
+
+                    <h6 class="fw-bold">
+                        Taladro Inalámbrico Makita 18V
+                    </h6>
+
+                    <span class="badge bg-success">
+                        Más Reservado
+                    </span>
+                    <h5>
+                        $149.990
+                    </h5>
+                </div>
+
+            </div>
+
+            <!-- TARJETA 2 -->
+            <div class="product-card">
+
+                <img src="{% static 'img/inicio/amoladora_dewalt_1200w.png' %}">
+
+                <div class="card-body text-center">
+
+                    <p class="text-muted mb-1">
+                       CONSTRUSTOCK
+                    </p>
+
+                    <h6 class="fw-bold">
+                        Amoladora Dewalt 1200W
+                    </h6>
+
+                    <span class="badge bg-success">
+                        Más Reservado
+                    </span>
+                    <h5>
+                        $109.990
+                    </h5>
+
+                </div>
+
+            </div>
+
+            <!-- TARJETA 3 -->
+            <div class="product-card">
+
+                <img src="{% static 'img/inicio/casco_seguridad.png' %}">
+
+                <div class="card-body text-center">
+
+                    <p class="text-muted mb-1">
+                        CONSTRUSTOCK
+                    </p>
+
+                    <h6 class="fw-bold">
+                        Casco de Seguridad
+                    </h6>
+
+                    <span class="badge bg-success">
+                        Más Reservado
+                    </span>
+
+                    <h5>
+                        $9.990
+                    </h5>
+                </div>
+
+            </div>
+
+            <!-- TARJETA 4 -->
+            <div class="product-card">
+
+                <img src="{% static 'img/inicio/tornillos_3.png' %}">
+
+                <div class="card-body text-center">
+
+                    <p class="text-muted mb-1">
+                        CONSTRUSTOCK
+                    </p>
+
+                    <h6 class="fw-bold">
+                        Tornillos Zincados 3"
+                    </h6>
+
+                    <span class="badge bg-success">
+                        Más Reservado
+                    </span>
+
+                    <h5>
+                        $6.990
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endblock %}
