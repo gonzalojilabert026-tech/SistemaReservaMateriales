@@ -1,34 +1,90 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Registro
-{% endblock %}
+{% load static %}
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center" style="
+     background-image:url('{% static 'img/ferreteria.jpg' %}');
+     background-size:cover;
+     background-position:center;
+     background-repeat:no-repeat;">
 
-    <div class="card shadow">
+    <div class="card shadow-lg border-0 position-relative" style="
+         width:500px;
+         background:rgba(255,255,255,.95);
+         border-radius:10px;
+         padding-top:50px;">
 
-        <div class="card-header bg-danger text-white">
+        <!-- Icono superior -->
+        <div class="text-center position-absolute top-0 start-50 translate-middle">
 
-            <h3>Registro de Usuario</h3>
+            <div class="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                style="width:90px;height:90px;">
+
+                <i class="bi bi-person-fill text-white fs-1"></i>
+
+            </div>
 
         </div>
 
-        <div class="card-body">
+        <div class="card-body px-5 py-4">
 
-            <p>
-                Aquí irá el formulario de registro.
+            <h2 class="text-center mb-4">
+                Crear Cuenta
+            </h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Usuario
+                    </label>
+                    {{ form.username }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Correo electrónico
+                    </label>
+                    {{ form.email }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Contraseña
+                    </label>
+                    {{ form.password1 }}
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">
+                        Confirmar contraseña
+                    </label>
+                    {{ form.password2 }}
+                </div>
+
+                <button class="btn btn-danger w-100">
+                    Registrarse
+                </button>
+
+
+            </form>
+
+            <hr>
+
+            <p class="text-center mb-0">
+
+                ¿Ya tienes cuenta?
+
+                <a href="{% url 'usuarios:login' %}" class="text-decoration-none fw-bold">
+
+                    Inicia sesión aquí
+
+                </a>
+
             </p>
-
-            <a
-            href="/"
-            class="btn btn-secondary">
-
-            Volver al inicio
-
-            </a>
 
         </div>
 

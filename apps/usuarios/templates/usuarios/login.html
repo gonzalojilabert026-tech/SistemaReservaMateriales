@@ -1,56 +1,76 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Iniciar Sesión
-{% endblock %}
+{% load static %}
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center"
+     style="
+     background-image:url('{% static 'img/ferreteria.jpg' %}');
+     background-size:cover;
+     background-position:center;">
 
-    <div class="row justify-content-center">
+    <div class="card shadow-lg border-0 position-relative"
+         style="
+         width:500px;
+         background:rgba(255,255,255,.95);
+         border-radius:10px;
+         padding-top:50px;">
 
-        <div class="col-md-5">
+        <div class="text-center position-absolute top-0 start-50 translate-middle">
 
-            <div class="card shadow">
+            <div class="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                 style="width:90px;height:90px;">
 
-                <div class="card-header bg-danger text-white">
-
-                    <h3>Iniciar Sesión</h3>
-
-                </div>
-
-                <div class="card-body">
-
-                    <form method="POST">
-
-                        {% csrf_token %}
-
-                        {{ form.as_p }}
-
-                        <button
-                        type="submit"
-                        class="btn btn-danger">
-
-                        Ingresar
-
-                        </button>
-
-                    </form>
-
-                    <hr>
-
-                    <a
-                    href="/"
-                    class="btn btn-secondary">
-
-                    Volver al Inicio
-
-                    </a>
-
-                </div>
+                <i class="bi bi-person-lock text-white fs-1"></i>
 
             </div>
+
+        </div>
+
+        <div class="card-body px-5 py-4">
+
+            <h2 class="text-center mb-4">
+                Iniciar Sesión
+            </h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label>Usuario</label>
+                    <input type="text"
+                           name="username"
+                           class="form-control">
+                </div>
+
+                <div class="mb-4">
+                    <label>Contraseña</label>
+                    <input type="password"
+                           name="password"
+                           class="form-control">
+                </div>
+
+                <button class="btn btn-danger w-100 py-2">
+                    Entrar
+                </button>
+
+            </form>
+
+            <hr>
+
+            <p class="text-center">
+
+                ¿No tienes cuenta?
+
+                <a href="{% url 'usuarios:registro' %}"
+                   class="fw-bold text-decoration-none">
+
+                    Crear cuenta
+
+                </a>
+
+            </p>
 
         </div>
 
