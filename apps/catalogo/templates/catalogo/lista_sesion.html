@@ -1,49 +1,123 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<h1 class="mb-4">
-    Materiales en Sesión
-</h1>
+<div class="container py-5">
 
-<div class="card">
+    <div class="card border-0 shadow-lg">
 
-    <div class="card-body">
+        <div class="card-header bg-danger text-white">
 
-        {% if materiales %}
+            <h2 class="mb-0">
+                <i class="bi bi-cart-fill"></i>
+                Centro de Reservas
+            </h2>
 
-            <p>
-                <strong>Total materiales:</strong>
-                {{ materiales|length }}
-            </p>
+        </div>
 
-            <ul class="list-group">
+        <div class="card-body">
+
+            {% if materiales %}
+
+            <div class="alert alert-success">
+
+                Tienes
+                <strong>{{ materiales|length }}</strong>
+                material(es) agregados.
+
+            </div>
+
+            <div class="list-group">
 
                 {% for material in materiales %}
 
-                    <li class="list-group-item">
-                        {{ material }}
-                    </li>
+                <div class="list-group-item p-4">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-md-2 text-center">
+
+                            <i class="bi bi-box-seam-fill text-danger"
+                               style="font-size:55px;">
+                            </i>
+
+                        </div>
+
+                        <div class="col-md-7">
+
+                            <h5 class="fw-bold">
+
+                                {{ material }}
+
+                            </h5>
+
+                            <span class="badge bg-success">
+                                Reservado
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
                 {% endfor %}
 
-            </ul>
+            </div>
 
-            <a
-                href="{% url 'catalogo:vaciar_sesion' %}"
-                class="btn btn-danger mt-3">
+            <div class="mt-4 d-flex gap-2">
 
-                Vaciar Sesión
+                <a href="{% url 'catalogo:materiales' %}"
+                   class="btn btn-primary">
 
-            </a>
+                    <i class="bi bi-shop"></i>
+                    Seguir Reservando
 
-        {% else %}
+                </a>
 
-            <p>
-                No hay materiales en la sesión.
-            </p>
+                <a href="{% url 'catalogo:vaciar_sesion' %}"
+                   class="btn btn-danger">
 
-        {% endif %}
+                    <i class="bi bi-trash"></i>
+                    Vaciar Carrito
+
+                </a>
+
+            </div>
+
+            {% else %}
+
+            <div class="text-center py-5">
+
+                <img src="{% static 'img/carrito_sin_stock.png' %}"
+                     class="img-fluid mb-4"
+                     style="max-height:300px;">
+
+                <h2 class="fw-bold">
+
+                    No hay productos agregados
+
+                </h2>
+
+                <p class="text-muted fs-5">
+
+                    Tu carrito de reservas está vacío.
+
+                </p>
+
+                <a href="{% url 'catalogo:materiales' %}"
+                   class="btn btn-danger btn-lg">
+
+                    Ver Catálogo
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
 
     </div>
 

@@ -67,12 +67,14 @@ def detalle_material(request, id):
 def crear_material(request):
 
     if request.method == 'POST':
-
-        form = MaterialForm(request.POST)
+        form = MaterialForm(
+            request.POST,
+            request.FILES
+        )
 
         if form.is_valid():
             form.save()
-            return redirect('materiales')
+            return redirect('catalogo:materiales')
 
     else:
         form = MaterialForm()
@@ -96,15 +98,15 @@ def editar_material(request, id):
     )
 
     if request.method == 'POST':
-
         form = MaterialForm(
             request.POST,
+            request.FILES,
             instance=material
         )
 
         if form.is_valid():
             form.save()
-            return redirect('materiales')
+            return redirect('catalogo:materiales')
 
     else:
 
@@ -134,7 +136,7 @@ def eliminar_material(request, id):
 
         material.delete()
 
-        return redirect('materiales')
+        return redirect('catalogo:materiales')
 
     return render(
         request,
@@ -145,31 +147,36 @@ def eliminar_material(request, id):
     )
 
 
+@login_required
 def agregar_sesion(request, id):
-
-    material = get_object_or_404(
-        Material,
-        id=id
-    )
 
     materiales = request.session.get(
         'materiales_sesion',
         []
     )
 
-    materiales.append(material.nombre)
+    if id not in materiales:
+        materiales.append(id)
 
     request.session['materiales_sesion'] = materiales
+    request.session.modified = True
 
-    return redirect('materiales')
+    return redirect('catalogo:lista_sesion')
 
-
+@login_required
 def lista_sesion(request):
 
     materiales = request.session.get(
         'materiales_sesion',
         []
     )
+
+    if not materiales:
+
+        return render(
+            request,
+            'reservas/carrito.html'
+        )
 
     return render(
         request,
@@ -179,10 +186,9 @@ def lista_sesion(request):
         }
     )
 
-
 def vaciar_sesion(request):
 
     request.session['materiales_sesion'] = []
 
-    return redirect('lista_sesion')
+    return redirect('catalogo:lista_sesion')
     

@@ -2,37 +2,160 @@
 
 {% block content %}
 
-<h1 class="mb-4" style="text-align: center;">Editar Material</h1>
+<div class="container py-5">
 
-<div class="card">
+    <div class="card border-primary shadow">
 
-    <div class="card-body">
+        <div class="card-header bg-primary text-white">
 
-        <form method="post">
+            <h3>
+                Editar Material
+            </h3>
 
-            {% csrf_token %}
+        </div>
 
-            {{ form.as_p }}
+        <div class="card-body bg-light">
 
-            <button
-                type="submit"
-                class="btn btn-warning">
+            <form method="POST"
+                  enctype="multipart/form-data">
 
-                Actualizar
+                {% csrf_token %}
 
-            </button>
+                <div class="row">
 
-            <a
-                href="{% url 'catalogo:materiales' %}"
-                class="btn btn-secondary">
+                    <div class="col-md-4 mb-3">
 
-                Volver
+                        <label class="form-label">
+                            Nombre
+                        </label>
 
-            </a>
+                        {{ form.nombre }}
 
-        </form>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            Código
+                        </label>
+
+                        {{ form.codigo }}
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            Categoría
+                        </label>
+
+                        {{ form.categoria }}
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label>
+                            Stock
+                        </label>
+
+                        {{ form.stock }}
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label>
+                            Precio Referencia
+                        </label>
+
+                        {{ form.precio_referencia }}
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label>
+                            Imagen
+                        </label>
+
+                        {{ form.imagen }}
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                        <label>
+                            Estado
+                        </label>
+
+                        {{ form.estado }}
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <label>
+                            Activo
+                        </label>
+
+                        {{ form.activo }}
+
+                    </div>
+
+                </div>
+
+        </div>
 
     </div>
+
+    <!-- SECCIÓN AMARILLA -->
+
+    <div class="card border-warning shadow mt-4">
+
+        <div class="card-header bg-warning">
+
+            <h4>
+                Descripción del Producto
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {{ form.descripcion }}
+
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+
+        <button type="submit"
+                class="btn btn-success">
+
+            Actualizar Material
+
+        </button>
+
+        <a href="{% url 'catalogo:materiales'%}"
+           class="btn btn-secondary">
+
+           Volver
+
+        </a>
+
+    </div>
+
+    </form>
 
 </div>
 

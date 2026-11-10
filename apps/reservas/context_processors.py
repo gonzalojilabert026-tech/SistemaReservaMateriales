@@ -1,13 +1,10 @@
 def contador_materiales(request):
 
-    cantidad = 0
-
-    if "reserva" in request.session:
-
-        for item in request.session["reserva"].values():
-
-            cantidad += item["cantidad"]
+    materiales = request.session.get(
+        "materiales_sesion",
+        []
+    )
 
     return {
-        "contador_materiales": cantidad
+        "contador_materiales": len(materiales)
     }

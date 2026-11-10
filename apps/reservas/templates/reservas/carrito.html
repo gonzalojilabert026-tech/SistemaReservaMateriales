@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card border-0 shadow-lg">
+
+        <div class="card-body p-5">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-4 text-center">
+
+                    <img src="{% static 'img/carrito_sin_stock.png' %}"
+                         class="img-fluid"
+                         style="max-height:280px;">
+
+                </div>
+
+                <div class="col-md-8">
+
+                    <h1 class="fw-bold">
+                        No hay productos agregados
+                    </h1>
+
+                    <p class="fs-5 text-muted">
+                        Tu carrito de reservas está vacío.
+                    </p>
+
+                    <p>
+                        Explora nuestro catálogo y agrega materiales,
+                        herramientas o maquinaria para comenzar una reserva.
+                    </p>
+
+                    {% if not user.is_authenticated %}
+
+                    <a href="{% url 'usuarios:login' %}"
+                       class="btn btn-primary btn-lg">
+
+                        Iniciar Sesión
+
+                    </a>
+
+                    <a href="{% url 'usuarios:registro' %}"
+                       class="btn btn-success btn-lg">
+
+                        Registrarse
+
+                    </a>
+
+                    {% else %}
+
+                    <a href="{% url 'catalogo:materiales' %}"
+                       class="btn btn-danger btn-lg">
+
+                        Ver Catálogo
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
