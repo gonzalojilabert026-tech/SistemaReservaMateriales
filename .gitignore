@@ -7,13 +7,13 @@ __pycache__/
 *.pyc
 
 # Base de datos
-db.sqlite3
+#db.sqlite3
 
 # Variables de entorno
 .env
 
 # Archivos multimedia
-media/
+#media/
 
 # VS Code
 .vscode/
