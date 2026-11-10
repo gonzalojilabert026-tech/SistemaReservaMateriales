@@ -1,55 +1,175 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block contenido %}
+{% block content %}
 
-<div class="card">
+<div class="container-fluid min-vh-100 p-5"
+     style="
+     background-image:url('{% static 'img/ferreteria.jpg' %}');
+     background-size:cover;
+     background-position:center;
+     background-repeat:no-repeat;">
 
-    <div class="card-body">
+    <div class="row justify-content-center">
 
-        <h1 class="mb-4">
-            Perfil de Usuario
-        </h1>
+        <div class="col-lg-10">
 
-        <p>
-            <strong>Usuario:</strong>
-            {{ user.username }}
-        </p>
+            <div class="card shadow-lg border-0"
+                 style="
+                 background:rgba(255,255,255,0.95);
+                 border-radius:20px;">
 
-        <p>
-            <strong>Correo:</strong>
-            {{ user.email }}
-        </p>
+                <div class="card-body p-5">
 
-        <p>
-            <strong>Estado:</strong>
-            Autenticado
-        </p>
+                    <div class="row">
 
-        <hr>
+                        <!-- LADO IZQUIERDO -->
 
-        <a
-            href="/catalogo/"
-            class="btn btn-primary">
+                        <div class="col-md-4 text-center border-end">
 
-            Ir al Catálogo
+                            <div
+                                class="rounded-circle bg-danger mx-auto mb-4 d-flex justify-content-center align-items-center"
+                                style="
+                                width:150px;
+                                height:150px;">
 
-        </a>
+                                <i class="bi bi-person-fill text-white"
+                                   style="font-size:70px;"></i>
 
-        <a
-            href="/admin/"
-            class="btn btn-dark">
+                            </div>
 
-            Panel Admin
+                            <h3>
+                                {{ user.username }}
+                            </h3>
 
-        </a>
+                            <p class="text-muted">
+                                Cliente ConstruStock
+                            </p>
 
-        <a
-            href="{% url 'logout' %}"
-            class="btn btn-danger">
+                            <div class="d-grid gap-2 mt-4">
 
-            Cerrar sesión
+                                <a href="/catalogo/"
+                                   class="btn btn-danger">
 
-        </a>
+                                    Ver Catálogo
+
+                                </a>
+
+                                <a href="/"
+                                   class="btn btn-outline-danger">
+
+                                    Pagina Inicio
+                                </a>
+
+                                <a href="{% url 'usuarios:logout' %}"
+                                   class="btn btn-outline-dark">
+
+                                    Cerrar Sesión
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- LADO DERECHO -->
+
+                        <div class="col-md-8">
+
+                            <h2 class="mb-4">
+                                Mi Perfil
+                            </h2>
+
+                            <div class="card mb-3">
+
+                                <div class="card-body">
+
+                                    <h5>Información Personal</h5>
+
+                                    <hr>
+
+                                    <p>
+                                        <strong>Usuario:</strong>
+                                        {{ user.username }}
+                                    </p>
+
+                                    <p>
+                                        <strong>Email:</strong>
+                                        {{ user.email }}
+                                    </p>
+
+                                    <p>
+                                        <strong>Último acceso:</strong>
+                                        {{ user.last_login }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="card">
+
+                                <div class="card-body">
+
+                                    <h5>
+                                        Resumen de Reservas
+                                    </h5>
+
+                                    <hr>
+
+                                    <div class="row text-center">
+
+                                        <div class="col-md-4">
+
+                                            <h2 class="text-danger">
+                                                0
+                                            </h2>
+
+                                            <p>
+                                                Reservas Activas
+                                            </p>
+
+                                        </div>
+
+                                        <div class="col-md-4">
+
+                                            <h2 class="text-success">
+                                                0
+                                            </h2>
+
+                                            <p>
+                                                Entregadas
+                                            </p>
+
+                                        </div>
+
+                                        <div class="col-md-4">
+
+                                            <h2 class="text-warning">
+                                                0
+                                            </h2>
+
+                                            <p>
+                                                Pendientes
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 

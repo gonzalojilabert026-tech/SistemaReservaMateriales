@@ -1,16 +1,38 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm 
 from django.contrib.auth import login, logout
+from django.contrib.auth.forms import AuthenticationForm
+
+from .forms import RegistroForm
+
+
+def registro_view(request):
+
+    if request.method == 'POST':
+
+        form = RegistroForm(request.POST)
+
+        if form.is_valid():
+
+            usuario = form.save()
+
+            login(request, usuario)
+
+            return redirect('/catalogo/')
+
+    else:
+
+        form = RegistroForm()
+
+    return render(
+        request,
+        'usuarios/registro.html',
+        {'form': form}
+    )
 
 
 def iniciar_sesion(request):
 
-    if request.user.is_authenticated:
-        return redirect("perfil")
-
-    form = AuthenticationForm()
-
-    if request.method == "POST":
+    if request.method == 'POST':
 
         form = AuthenticationForm(
             request,
@@ -21,36 +43,31 @@ def iniciar_sesion(request):
 
             usuario = form.get_user()
 
-            login(
-                request,
-                usuario
-            )
+            login(request, usuario)
 
-            return redirect("perfil")
+            return redirect('/catalogo/')
+
+    else:
+
+        form = AuthenticationForm()
 
     return render(
         request,
-        "usuarios/login.html",
-        {
-            "form": form
-        }
+        'usuarios/login.html',
+        {'form': form}
     )
 
 
 def cerrar_sesion(request):
+
     logout(request)
-    return redirect('login')
+
+    return redirect('usuarios:login')
 
 
 def perfil(request):
-    return render(
-        request,
-        'usuarios/perfil.html'
-    )
-    
-def registro_view(request):
 
     return render(
         request,
-        'usuarios/registro.html'
+        'usuarios/perfil.html'
     )
