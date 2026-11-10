@@ -1,74 +1,105 @@
 {% extends 'base.html' %}
 
-{% block contenido %}
+{% block content %}
 
-<div class="card">
-
-    <div class="card-body">
-
-        <h1>{{ material.nombre }}</h1>
-
-        <hr>
-
-        <p>
-            <strong>Descripción:</strong>
-            {{ material.descripcion }}
-        </p>
-
-        <p>
-            <strong>Stock:</strong>
-            {{ material.stock }}
-        </p>
-
-        <p>
-            <strong>Precio:</strong>
-            {{ material.precio_referencia }}
-        </p>
-
-        <p>
-            <strong>Categoría:</strong>
-            {{ material.categoria }}
-        </p>
-
-        <a href="{% url 'materiales' %}" class="btn btn-primary">
-
-            Volver
-
-        </a>
-
-    </div>
-
-    <h3 class="mt-4">
-
-        Materiales Relacionados
-
-    </h3>
+<div class="container py-5">
 
     <div class="row">
 
-        {% for item in relacionados %}
+        <div class="col-md-2">
 
-        <div class="col-md-3">
+            {% if material.imagen %}
+            <img src="{{ material.imagen.url }}"
+                 class="img-fluid border mb-2 rounded">
+            {% endif %}
 
-            <div class="card">
+        </div>
 
-                <div class="card-body">
+        <div class="col-md-5">
 
-                    <h5>
-                        {{ item.nombre }}
-                    </h5>
+            {% if material.imagen %}
+            <img src="{{ material.imagen.url }}"
+                 class="img-fluid rounded shadow">
+            {% endif %}
 
-                    <p>
-                        {{ item.categoria }}
-                    </p>
+        </div>
 
-                </div>
+        <div class="col-md-5">
+
+            <span class="text-muted">
+                ConstruStock
+            </span>
+
+            <h2 class="mt-2">
+                {{ material.nombre }}
+            </h2>
+
+            <hr>
+
+            <h1 class="text-danger">
+                ${{ material.precio_referencia }}
+            </h1>
+
+            <p class="mt-3">
+
+                <strong>Categoría:</strong>
+
+                {{ material.categoria }}
+
+            </p>
+
+            <p>
+
+                <strong>Stock disponible:</strong>
+
+                {{ material.stock }}
+
+            </p>
+
+            {% if material.stock > 0 %}
+
+            <span class="badge bg-success p-2">
+                Disponible
+            </span>
+
+            {% else %}
+
+            <span class="badge bg-danger p-2">
+                Sin stock
+            </span>
+
+            {% endif %}
+
+            <div class="d-grid mt-4">
+
+                <a href="{% url 'catalogo:agregar_sesion' material.id %}"
+                   class="btn btn-primary btn-lg">
+
+                    Reservar Material
+
+                </a>
 
             </div>
 
         </div>
 
-        {% endfor %}
+    </div>
+
+    <div class="card mt-5">
+
+        <div class="card-header">
+
+            <h4>
+                Descripción del Producto
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {{ material.descripcion }}
+
+        </div>
 
     </div>
 

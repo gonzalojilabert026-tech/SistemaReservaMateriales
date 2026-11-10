@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block contenido %}
+{% block content %}
 
 <h1 class="mb-4">
     Materiales en Sesión
@@ -30,7 +30,7 @@
             </ul>
 
             <a
-                href="{% url 'vaciar_sesion' %}"
+                href="{% url 'catalogo:vaciar_sesion' %}"
                 class="btn btn-danger mt-3">
 
                 Vaciar Sesión

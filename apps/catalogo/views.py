@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
+from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
@@ -62,6 +63,7 @@ def detalle_material(request, id):
     )
 
 @login_required
+@staff_member_required
 def crear_material(request):
 
     if request.method == 'POST':
@@ -85,6 +87,7 @@ def crear_material(request):
 
 
 @login_required
+@staff_member_required
 def editar_material(request, id):
 
     material = get_object_or_404(
@@ -118,8 +121,8 @@ def editar_material(request, id):
         }
     )
 
-
 @login_required
+@staff_member_required
 def eliminar_material(request, id):
 
     material = get_object_or_404(

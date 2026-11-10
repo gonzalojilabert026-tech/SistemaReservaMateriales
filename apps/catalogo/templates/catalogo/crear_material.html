@@ -1,36 +1,40 @@
 {% extends 'base.html' %}
 
-{% block contenido %}
+{% block content %}
 
-<h1 class="mb-4">Crear Material</h1>
 
-<div class="card">
+    <h1 class="mb-4" style="text-align: center;">Crear Material</h1>
 
-    <div class="card-body">
+<div class="container py-5">
 
-        <form method="post">
+    <div class="row justify-content-center">
+            
+      
+        <div class="col-lg-8">
 
-            {% csrf_token %}
+            <div class="card shadow-lg border-0">
 
-            {{ form.as_p }}
+                <div class="card-header bg-danger text-white">
+             
+                    <h3>
+                        Nuevo Material
+                    </h3>
 
-            <button
-                type="submit"
-                class="btn btn-success">
+                </div>
 
-                Guardar
+                <div class="card-body">
 
-            </button>
+                    {{ form.as_p }}
 
-            <a
-                href="{% url 'materiales' %}"
-                class="btn btn-secondary">
+                    <button class="btn btn-danger">
+                        Guardar Material
+                    </button>
 
-                Volver
+                </div>
 
-            </a>
+            </div>
 
-        </form>
+        </div>
 
     </div>
 
