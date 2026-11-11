@@ -4,7 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
-from .models import Material
+from .models import Material, Categoria
 from .forms import MaterialForm
 
 
@@ -15,17 +15,23 @@ def lista_materiales(request):
     materiales = Material.objects.all()
 
     if buscar:
+
         materiales = Material.objects.filter(
             Q(nombre__icontains=buscar) |
             Q(descripcion__icontains=buscar) |
             Q(codigo__icontains=buscar)
         )
 
-    paginator = Paginator(materiales, 5)
+    paginator = Paginator(
+        materiales,
+        8
+    )
 
     page_number = request.GET.get('page')
 
-    materiales = paginator.get_page(page_number)
+    materiales = paginator.get_page(
+        page_number
+    )
 
     return render(
         request,
@@ -35,6 +41,33 @@ def lista_materiales(request):
         }
     )
 
+
+@login_required
+def lista_sesion(request):
+
+    ids = request.session.get(
+        'materiales_sesion',
+        []
+    )
+
+    materiales = Material.objects.filter(
+        id__in=ids
+    )
+
+    if not materiales.exists():
+
+        return render(
+            request,
+            'reservas/carrito.html'
+        )
+
+    return render(
+        request,
+        'catalogo/lista_sesion.html',
+        {
+            'materiales': materiales
+        }
+    )
 
 def detalle_material(request, id):
 
@@ -67,16 +100,42 @@ def detalle_material(request, id):
 def crear_material(request):
 
     if request.method == 'POST':
-        form = MaterialForm(
-            request.POST,
-            request.FILES
+
+        nueva_categoria = request.POST.get(
+            'nueva_categoria'
         )
 
+        if nueva_categoria:
+
+            categoria, creada = Categoria.objects.get_or_create(
+                nombre_categoria=nueva_categoria
+            )
+
+            datos = request.POST.copy()
+            datos['categoria'] = categoria.id
+
+            form = MaterialForm(
+                datos,
+                request.FILES
+            )
+
+        else:
+
+            form = MaterialForm(
+                request.POST,
+                request.FILES
+            )
+
         if form.is_valid():
+
             form.save()
-            return redirect('catalogo:materiales')
+
+            return redirect(
+                'catalogo:materiales'
+            )
 
     else:
+
         form = MaterialForm()
 
     return render(
@@ -86,7 +145,6 @@ def crear_material(request):
             'form': form
         }
     )
-
 
 @login_required
 @staff_member_required
@@ -161,30 +219,18 @@ def agregar_sesion(request, id):
     request.session['materiales_sesion'] = materiales
     request.session.modified = True
 
-    return redirect('catalogo:lista_sesion')
-
-@login_required
-def lista_sesion(request):
-
-    materiales = request.session.get(
-        'materiales_sesion',
-        []
+    return redirect(
+        'catalogo:lista_sesion'
     )
 
-    if not materiales:
-
-        return render(
-            request,
-            'reservas/carrito.html'
-        )
+@login_required
+def comprobante(request):
 
     return render(
         request,
-        'catalogo/lista_sesion.html',
-        {
-            'materiales': materiales
-        }
+        'catalogo/comprobante.html'
     )
+
 
 def vaciar_sesion(request):
 

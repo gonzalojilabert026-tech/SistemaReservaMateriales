@@ -16,8 +16,7 @@
 
         <div class="card-body bg-light">
 
-            <form method="POST"
-                  enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
 
                 {% csrf_token %}
 
@@ -30,7 +29,7 @@
                         </label>
 
                         {{ form.nombre }}
-
+                        
                     </div>
 
                     <div class="col-md-4 mb-3">
@@ -50,6 +49,21 @@
                         </label>
 
                         {{ form.categoria }}
+
+                        {% if user.is_superuser %}
+
+                        <div class="mt-2">
+
+                            <small class="text-muted">
+                                O crear una nueva categoría
+                            </small>
+
+                            <input type="text" name="nueva_categoria" class="form-control mt-1"
+                                placeholder="Ejemplo: Herramientas Eléctricas">
+
+                        </div>
+
+                        {% endif %}
 
                     </div>
 
@@ -101,15 +115,7 @@
 
                     </div>
 
-                    <div class="col-md-3">
-
-                        <label>
-                            Activo
-                        </label>
-
-                        {{ form.activo }}
-
-                    </div>
+                    
 
                 </div>
 
@@ -139,17 +145,15 @@
 
     <div class="mt-4">
 
-        <button type="submit"
-                class="btn btn-success">
+        <button type="submit" class="btn btn-success">
 
             Guardar Material
 
         </button>
 
-        <a href="{% url 'catalogo:materiales' %}"
-           class="btn btn-secondary">
+        <a href="{% url 'catalogo:materiales' %}" class="btn btn-secondary">
 
-           Volver
+            Volver
 
         </a>
 

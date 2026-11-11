@@ -32,29 +32,112 @@
 
                 {% for material in materiales %}
 
-                <div class="list-group-item p-4">
+                <div class="card mb-4 shadow border-0">
 
-                    <div class="row align-items-center">
+                    <div class="card-body">
 
-                        <div class="col-md-2 text-center">
+                        <div class="row align-items-center">
 
-                            <i class="bi bi-box-seam-fill text-danger"
-                               style="font-size:55px;">
-                            </i>
+                            <!-- IMAGEN IZQUIERDA -->
+                            <div class="col-md-4 text-center">
 
-                        </div>
+                                {% if material.imagen %}
 
-                        <div class="col-md-7">
+                                <img src="{{ material.imagen.url }}" class="img-fluid rounded" style="
+                        max-height:280px;
+                        object-fit:contain;
+                     ">
 
-                            <h5 class="fw-bold">
+                                {% endif %}
 
-                                {{ material }}
+                            </div>
 
-                            </h5>
+                            <!-- DATOS DERECHA -->
+                            <div class="col-md-8">
 
-                            <span class="badge bg-success">
-                                Reservado
-                            </span>
+                                <small class="text-muted">
+                                    ConstruStock
+                                </small>
+
+                                <h3 class="fw-bold mt-2">
+                                    {{ material.nombre }}
+                                </h3>
+
+                                <hr>
+
+                                <h2 class="text-danger fw-bold">
+                                    ${{ material.precio_referencia|floatformat:0 }}
+                                </h2>
+
+                                <p>
+                                    <strong>Stock disponible:</strong>
+                                    {{ material.stock }}
+                                </p>
+
+                                <div class="alert alert-info">
+
+                                    Selecciona la cantidad deseada y presiona
+                                    <strong>Agregar al Carrito</strong>.
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+
+                                        <label class="form-label">
+                                            Cantidad
+                                        </label>
+
+                                        <select class="form-select">
+
+                                            {% for i in "123456789"|make_list %}
+
+                                            <option>
+                                                {{ i }}
+                                            </option>
+
+                                            {% endfor %}
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                                <hr>
+
+                                <h4 class="text-success">
+
+                                    Total Producto
+
+                                    <br>
+
+                                    ${{ material.precio_referencia|floatformat:0 }}
+
+                                </h4>
+
+                                <div class="d-flex gap-2 mt-4">
+
+                                    <a href="{% url 'catalogo:agregar_sesion' material.id %}" class="btn btn-success">
+
+                                        <i class="bi bi-cart-plus-fill"></i>
+
+                                        Agregar al Carrito
+
+                                    </a>
+
+                                    <a href="{% url 'catalogo:materiales' %}" class="btn btn-secondary">
+
+                                        <i class="bi bi-arrow-left"></i>
+
+                                        Volver al Catálogo
+
+                                    </a>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
@@ -68,16 +151,14 @@
 
             <div class="mt-4 d-flex gap-2">
 
-                <a href="{% url 'catalogo:materiales' %}"
-                   class="btn btn-primary">
+                <a href="{% url 'catalogo:materiales' %}" class="btn btn-primary">
 
                     <i class="bi bi-shop"></i>
                     Seguir Reservando
 
                 </a>
 
-                <a href="{% url 'catalogo:vaciar_sesion' %}"
-                   class="btn btn-danger">
+                <a href="{% url 'catalogo:vaciar_sesion' %}" class="btn btn-danger">
 
                     <i class="bi bi-trash"></i>
                     Vaciar Carrito
@@ -90,9 +171,7 @@
 
             <div class="text-center py-5">
 
-                <img src="{% static 'img/carrito_sin_stock.png' %}"
-                     class="img-fluid mb-4"
-                     style="max-height:300px;">
+                <img src="{% static 'img/carrito_sin_stock.png' %}" class="img-fluid mb-4" style="max-height:300px;">
 
                 <h2 class="fw-bold">
 
@@ -106,8 +185,7 @@
 
                 </p>
 
-                <a href="{% url 'catalogo:materiales' %}"
-                   class="btn btn-danger btn-lg">
+                <a href="{% url 'catalogo:materiales' %}" class="btn btn-danger btn-lg">
 
                     Ver Catálogo
 

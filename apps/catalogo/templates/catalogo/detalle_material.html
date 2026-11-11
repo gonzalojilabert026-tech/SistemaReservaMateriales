@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load humanize %}
 {% block content %}
 
 <div class="container py-5">
@@ -35,7 +35,7 @@
             <hr>
 
             <h1 class="text-danger">
-                ${{ material.precio_referencia }}
+                ${{ material.precio_referencia|floatformat:0|intcomma }}
             </h1>
 
             <p class="mt-3">

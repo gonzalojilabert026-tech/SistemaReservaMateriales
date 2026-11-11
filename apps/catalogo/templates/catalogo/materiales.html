@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block content %}
 
 <div class="container-fluid py-5"
@@ -65,7 +65,7 @@ min-height:100vh;
                         </p>
 
                         <h4 class="text-danger fw-bold">
-                            ${{ material.precio_referencia }}
+                            ${{ material.precio_referencia|floatformat:0|intcomma }}
                         </h4>
 
                     </div>
